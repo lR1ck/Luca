@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import MenuHeader from './MenuHeader';
+import ChatView from './ChatView';
 
 export default function MenuPanel({ isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState('Chat');
@@ -30,10 +31,7 @@ export default function MenuPanel({ isOpen, onClose }) {
 
       <div className="panel-content">
         {activeTab === 'Chat' ? (
-          <div className="placeholder">
-            <p>Vista Chat</p>
-            <span>Proximamente...</span>
-          </div>
+          <ChatView />
         ) : (
           <div className="placeholder">
             <p>Panel LUCA</p>
