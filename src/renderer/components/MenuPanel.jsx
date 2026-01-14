@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import MenuHeader from './MenuHeader';
 import ChatView from './ChatView';
+import PanelLuca from './PanelLuca';
 
 export default function MenuPanel({ isOpen, onClose }) {
   const [activeTab, setActiveTab] = useState('Chat');
@@ -30,14 +31,7 @@ export default function MenuPanel({ isOpen, onClose }) {
       />
 
       <div className="panel-content">
-        {activeTab === 'Chat' ? (
-          <ChatView />
-        ) : (
-          <div className="placeholder">
-            <p>Panel LUCA</p>
-            <span>Proximamente...</span>
-          </div>
-        )}
+        {activeTab === 'Chat' ? <ChatView /> : <PanelLuca />}
       </div>
     </div>
   );

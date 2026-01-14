@@ -456,3 +456,427 @@ body,
 .attach-button:disabled {
   cursor: not-allowed;
 }
+
+/* ========== PANEL LUCA ========== */
+
+.panel-luca {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.panel-luca-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Scrollbar personalizado para panel LUCA */
+.panel-luca-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.panel-luca-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.panel-luca-content::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 3px;
+}
+
+.panel-luca-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+/* ========== STATUS INDICATOR ========== */
+
+.status-indicator {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-icon {
+  font-size: 24px;
+}
+
+.status-text {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.status-description {
+  font-size: 14px;
+  color: #9CA3AF;
+  margin-left: 34px;
+}
+
+.status-app {
+  font-size: 13px;
+  color: #9CA3AF;
+  margin-left: 34px;
+}
+
+.status-app strong {
+  color: #F9FAFB;
+  font-weight: 500;
+}
+
+/* ========== ACTIVITY CARD ========== */
+
+.activity-card {
+  background: rgba(55, 65, 81, 0.5);
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.activity-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.activity-icon {
+  font-size: 20px;
+}
+
+.activity-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #F9FAFB;
+}
+
+.activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.activity-item {
+  display: flex;
+  gap: 8px;
+  font-size: 14px;
+  color: #9CA3AF;
+}
+
+.activity-bullet {
+  color: #8B5CF6;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.activity-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.activity-text strong {
+  color: #F9FAFB;
+  font-weight: 500;
+}
+
+.activity-question {
+  color: #D1D5DB;
+  font-style: italic;
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+/* ========== QUICK SETTINGS ========== */
+
+.quick-settings {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.settings-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings-icon {
+  font-size: 20px;
+}
+
+.settings-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #F9FAFB;
+}
+
+.setting-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.setting-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #F9FAFB;
+}
+
+/* Slider */
+.slider-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+}
+
+.slider {
+  flex: 1;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  background: rgba(55, 65, 81, 0.8);
+  border-radius: 3px;
+  outline: none;
+  cursor: pointer;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  background: #8B5CF6;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #8B5CF6;
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  transition: transform 0.2s ease;
+}
+
+.slider::-moz-range-thumb:hover {
+  transform: scale(1.2);
+}
+
+.slider-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8B5CF6;
+  min-width: 30px;
+  text-align: right;
+}
+
+/* Radio buttons */
+.radio-group {
+  display: flex;
+  gap: 12px;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  flex: 1;
+  padding: 10px 14px;
+  background: rgba(55, 65, 81, 0.5);
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s ease;
+}
+
+.radio-option:hover {
+  background: rgba(55, 65, 81, 0.8);
+  border-color: rgba(139, 92, 246, 0.5);
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-checkmark {
+  width: 18px;
+  height: 18px;
+  border-radius: 4px;
+  border: 2px solid #9CA3AF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+
+.radio-option input[type="radio"]:checked + .radio-checkmark {
+  background: #8B5CF6;
+  border-color: #8B5CF6;
+  color: white;
+}
+
+.radio-label {
+  font-size: 14px;
+  color: #F9FAFB;
+}
+
+/* Apps excluidas */
+.excluded-apps-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.no-excluded-apps {
+  font-size: 13px;
+  color: #9CA3AF;
+  font-style: italic;
+  padding: 8px 0;
+}
+
+.excluded-app-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  background: rgba(55, 65, 81, 0.5);
+  border-radius: 6px;
+  font-size: 14px;
+  color: #F9FAFB;
+}
+
+.remove-app-btn {
+  width: 22px;
+  height: 22px;
+  border-radius: 4px;
+  border: none;
+  background: transparent;
+  color: #9CA3AF;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.remove-app-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #EF4444;
+}
+
+.add-app-btn {
+  padding: 8px 12px;
+  background: transparent;
+  border: 1px dashed rgba(139, 92, 246, 0.5);
+  border-radius: 6px;
+  color: #8B5CF6;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.add-app-btn:hover {
+  background: rgba(139, 92, 246, 0.1);
+  border-color: #8B5CF6;
+}
+
+.add-app-input-container {
+  display: flex;
+  gap: 6px;
+}
+
+.add-app-input {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(31, 41, 55, 0.8);
+  border: 1px solid rgba(139, 92, 246, 0.5);
+  border-radius: 6px;
+  color: #F9FAFB;
+  font-size: 13px;
+  outline: none;
+}
+
+.add-app-input::placeholder {
+  color: #9CA3AF;
+}
+
+.add-app-confirm {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  border: none;
+  background: #8B5CF6;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.add-app-confirm:hover {
+  background: #7C3AED;
+  transform: scale(1.05);
+}
+
+/* ========== FOOTER ACTION BUTTON ========== */
+
+.panel-luca-footer {
+  padding: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(55, 65, 81, 0.5);
+}
+
+.action-button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.action-button.pause {
+  background: #F59E0B;
+  color: white;
+}
+
+.action-button.pause:hover {
+  background: #D97706;
+  transform: translateY(-1px);
+}
+
+.action-button.resume {
+  background: #10B981;
+  color: white;
+}
+
+.action-button.resume:hover {
+  background: #059669;
+  transform: translateY(-1px);
+}
