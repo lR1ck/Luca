@@ -4,8 +4,9 @@
 
 Estamos construyendo un asistente de IA que ve la pantalla del usuario y lo asiste en tiempo real.
 - **Stack**: Electron + React + Vite + Ollama (LLaVA)
-- **Fase actual**: UI (Frontend React)
-- **Próximas fases**: Backend (capturas + Ollama), Contexto inteligente
+- **Fase actual**: Backend (Capturas + Ollama)
+- **Fase completada**: ✅ UI (Frontend React)
+- **Próximas fases**: Contexto inteligente, Automatización
 
 ---
 
@@ -13,18 +14,99 @@ Estamos construyendo un asistente de IA que ve la pantalla del usuario y lo asis
 ```
 LUCA/
 ├── src/
-│   ├── main/              # Backend Electron (NO TOCAR POR AHORA)
-│   ├── renderer/          # Frontend React (TRABAJAMOS AQUÍ)
+│   ├── main/              # Backend Electron (TRABAJAMOS AQUÍ AHORA)
+│   │   ├── main.js        # Proceso principal de Electron
+│   │   └── preload.js     # Bridge IPC seguro
+│   ├── renderer/          # Frontend React (✅ COMPLETADO)
 │   │   ├── components/    # Componentes React
+│   │   │   ├── MenuPanel.jsx
+│   │   │   ├── MenuHeader.jsx
+│   │   │   ├── ChatView.jsx
+│   │   │   ├── Message.jsx
+│   │   │   ├── ChatInput.jsx
+│   │   │   ├── PanelLuca.jsx
+│   │   │   ├── StatusIndicator.jsx
+│   │   │   ├── ActivityCard.jsx
+│   │   │   └── QuickSettings.jsx
 │   │   ├── App.jsx        # Componente raíz
 │   │   ├── main.jsx       # Entry point
-│   │   └── styles.css     # Estilos globales (opcional)
-│   └── shared/            # Código compartido (NO TOCAR POR AHORA)
+│   │   └── styles.css     # Estilos globales
+│   └── shared/            # Código compartido (futuro)
 ├── public/
 │   └── index.html         # HTML base
 ├── .env                   # Variables de entorno
 └── package.json
 ```
+
+---
+
+## 📦 Componentes Implementados
+
+### Componentes Base
+- **App.jsx** (`src/renderer/App.jsx`)
+  - Componente raíz de la aplicación
+  - Maneja estado de panel abierto/cerrado
+  - Controla resize dinámico de ventana vía IPC
+  - Integra bola flotante + MenuPanel
+
+### Bola Flotante
+- **Incluido en App.jsx**
+  - Bola circular draggable (80px)
+  - Hover effect (scale 1.1)
+  - Pulso idle cada 3 segundos
+  - Click en icono ⚡ abre/cierra panel
+
+### Menú Desplegable
+- **MenuPanel.jsx** (`src/renderer/components/MenuPanel.jsx`)
+  - Container principal del panel (400x600px)
+  - Animación slide-in/out
+  - Glassmorphism con backdrop-blur
+  - Toggle entre ChatView y PanelLuca
+
+- **MenuHeader.jsx** (`src/renderer/components/MenuHeader.jsx`)
+  - Tabs "Chat" y "Panel LUCA"
+  - Botón cerrar (X)
+  - Highlight morado en tab activo
+
+### Vista Chat
+- **ChatView.jsx** (`src/renderer/components/ChatView.jsx`)
+  - Container de chat con scroll automático
+  - Mensajes de bienvenida
+  - Typing indicator animado
+  - Estado vacío con placeholder
+
+- **Message.jsx** (`src/renderer/components/Message.jsx`)
+  - Mensaje individual (IA o usuario)
+  - Avatar emoji (🤖/👤)
+  - Timestamp
+  - Animación fade-in + slide-up
+
+- **ChatInput.jsx** (`src/renderer/components/ChatInput.jsx`)
+  - Textarea auto-resize (1-5 líneas)
+  - Enter envía, Shift+Enter nueva línea
+  - Botón adjuntar (📎) placeholder
+  - Botón enviar (⚡) activo solo con texto
+
+### Panel LUCA
+- **PanelLuca.jsx** (`src/renderer/components/PanelLuca.jsx`)
+  - Container principal del panel de control
+  - Gestión de estados mock
+  - Integra StatusIndicator + ActivityCard + QuickSettings
+  - Botón Pausar/Reanudar
+
+- **StatusIndicator.jsx** (`src/renderer/components/StatusIndicator.jsx`)
+  - Indicador visual de estado (🟢/🟡/🔴)
+  - Descripción contextual
+  - Muestra app activa
+
+- **ActivityCard.jsx** (`src/renderer/components/ActivityCard.jsx`)
+  - Card con estadísticas (capturas, app más usada, etc.)
+  - Diseño glassmorphism
+
+- **QuickSettings.jsx** (`src/renderer/components/QuickSettings.jsx`)
+  - Slider intervalo capturas (1-10s)
+  - Radio buttons modo observador
+  - Lista apps excluidas (agregar/eliminar)
 
 ---
 
@@ -225,21 +307,133 @@ Este componente crea la bolita flotante draggable.
 
 ---
 
-## 🎯 Objetivo Actual: UI Completa
+## 🎯 Objetivo Actual: Integración Frontend
 
-Estamos en la **FASE 1: UI**
+**FASE 1: UI** ✅ **COMPLETADA**
+**FASE 2: Backend** ✅ **COMPLETADA**
 
-Orden de implementación:
+Ahora estamos en la **FASE 3: Integración Frontend (Conectar UI con Backend)**
+
+### Orden de implementación:
+
+**Fase 1 - UI (Completada):**
 1. ✅ Setup + Bolita flotante
-2. ⏳ Menú desplegable con toggle
-3. ⏳ Vista Chat
-4. ⏳ Panel LUCA
+2. ✅ Menú desplegable con toggle
+3. ✅ Vista Chat
+4. ✅ Panel LUCA
 
-Cada paso debe:
-- Funcionar independientemente
-- Tener datos mock
-- Verse pulido (no placeholder gris)
-- Ser responsive dentro del panel (400px fijo)
+**Fase 2 - Backend (COMPLETADA ✅):**
+5. ✅ OllamaClient - Cliente para comunicación con Ollama (llama3.2-vision)
+6. ✅ CaptureManager - Sistema de capturas de pantalla automáticas
+7. ✅ ContextManager - Gestión de contexto inteligente
+8. ✅ Integración UI ↔ Backend vía IPC
+
+**Fase 3 - Integración Frontend (Actual):**
+9. ⏳ Conectar ChatView con backend real
+10. ⏳ Conectar PanelLuca con datos en vivo
+11. ⏳ Implementar controles funcionales en QuickSettings
+
+**Fase 4 - Contexto (Próxima):**
+12. ⏳ Detección de apps activas
+13. ⏳ Análisis de contexto
+14. ⏳ Sistema de prompts dinámicos
+
+**Fase 5 - Automatización (Futuro):**
+15. ⏳ Event tracking
+16. ⏳ Almacenamiento persistente
+17. ⏳ Control y automatización
+
+---
+
+## 🔌 Preparación para Backend
+
+### Estructura IPC Implementada
+
+Ya tenemos la base de comunicación IPC configurada:
+
+**Preload Script** (`src/main/preload.js`):
+```javascript
+window.electron = {
+  resizeWindow: (width, height) => {...},
+  send: (channel, data) => {...},
+  on: (channel, func) => {...}
+}
+```
+
+### Canales IPC Necesarios para Backend
+
+**Comunicación Renderer → Main:**
+```javascript
+// Chat
+'send-message' → { text, timestamp }
+'get-chat-history' → void
+
+// Capturas
+'start-capture' → { interval }
+'stop-capture' → void
+'pause-capture' → void
+'resume-capture' → void
+
+// Configuración
+'update-settings' → { captureInterval, observerMode, excludedApps }
+'get-settings' → void
+
+// Apps
+'add-excluded-app' → { appName }
+'remove-excluded-app' → { appName }
+```
+
+**Comunicación Main → Renderer:**
+```javascript
+// Chat
+'message-response' → { text, isTyping }
+
+// Estado
+'status-changed' → { status, description, activeApp }
+'activity-updated' → { captures, mostUsedApp, activeTime }
+
+// Capturas
+'capture-taken' → { timestamp, path }
+'capture-error' → { error }
+
+// Settings
+'settings-loaded' → { settings }
+```
+
+### Estados que Conectar al Backend
+
+**ChatView.jsx:**
+- `messages` → Conectar a historial persistente
+- `handleSendMessage` → Enviar a Ollama vía IPC
+- Respuestas IA → Recibir desde Main process
+
+**PanelLuca.jsx:**
+- `status` → Recibir desde CaptureManager
+- `captureInterval` → Sincronizar con backend
+- `observerMode` → Enviar a backend
+- `excludedApps` → Persistir y sincronizar
+
+**ActivityCard:**
+- `captures` → Contador real desde CaptureManager
+- `mostUsedApp` → Detectar desde active-win
+- `lastQuestion` → Último mensaje enviado
+- `activeTime` → Tiempo real de ejecución
+
+### Arquitectura Backend Propuesta
+
+```
+src/main/
+├── main.js              # Proceso principal (ya existe)
+├── preload.js           # Bridge IPC (ya existe)
+├── services/
+│   ├── OllamaClient.js      # Comunicación con Ollama
+│   ├── CaptureManager.js    # Capturas de pantalla
+│   ├── ContextManager.js    # Gestión de contexto
+│   └── SettingsManager.js   # Persistencia de configuración
+└── utils/
+    ├── activeWindow.js      # Detección app activa
+    └── logger.js            # Sistema de logs
+```
 
 ---
 
@@ -255,8 +449,38 @@ Cada paso debe:
 ## 🔄 Actualizaciones
 
 Este archivo se actualizará conforme avancemos en las fases:
-- Fase 2: Reglas de backend (capturas, Ollama)
-- Fase 3: Reglas de contexto y prompts
-- Fase 4: Reglas de control y automatización
+- ✅ Fase 1: UI completa - Componentes, estilos, animaciones
+- ✅ Fase 2: Backend completo (capturas, Ollama, IPC)
+- ⏳ Fase 3: Integración Frontend - **EN PROGRESO**
+- ⏳ Fase 4: Reglas de contexto y prompts
+- ⏳ Fase 5: Reglas de control y automatización
 
-**Última actualización**: [14/01/2026]
+**Última actualización**: [19/01/2026 - 18:00]
+
+### Changelog:
+- **19/01/2026 18:00**: Completada Fase 2 (Backend). Migrado a llama3.2-vision. Sistema de capturas funcionando. Agregada sección "Estado Actual del Proyecto".
+- **14/01/2026 12:30**: Completada Fase 1 (UI). Agregada sección "Componentes Implementados" y "Preparación para Backend". Actualizado roadmap de implementación.
+- **14/01/2026 09:00**: Creación inicial del documento con reglas de UI.
+
+---
+
+## 🎯 Estado Actual del Proyecto
+
+**Última actualización**: 19/01/2026
+
+### ✅ Completado:
+- Fase 1: UI completa con componentes React
+- Fase 2: Backend funcional con IA (llama3.2-vision)
+  - Sistema de capturas automáticas cada 30 segundos
+  - Análisis inteligente de actividad del usuario
+  - Detección de aplicación activa
+  - Almacenamiento de contexto en memoria
+  - IPC funcionando correctamente
+
+### 🔄 En progreso:
+- Fase 3: Conexión del frontend con datos reales del backend
+
+### 📝 Notas técnicas:
+- Modelo de IA: llama3.2-vision (cambio desde llava:7b por problemas de encoding)
+- Intervalo de capturas: 30 segundos (ajustable)
+- Timeout: 180 segundos (el modelo tarda ~2 min por análisis)
